@@ -1,28 +1,15 @@
 package by.vasiliuk.project.model.entity;
 
-public class Section {
-
+public enum Section {
+FURNITURE(100), CARS(200), ELECTRONICS(300), HOUSEHOLD(400);
     private long id;
-    private String title;
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+  Section(long id) {
         this.id = id;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Section(long id, String title) {
-        this.id = id;
-        this.title = title;
     }
 }

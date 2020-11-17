@@ -16,18 +16,7 @@ public class SectionsCommand implements Command {
     public String execute(HttpServletRequest request) throws CommandException {
 
         String sectionsPage = JspPath.SECTIONS_PAGE;
-        SectionServiceImpl service = SectionServiceImpl.getInstance();
-        List<Section> list;
-        try {
-            list = service.findAll();
-        } catch (ServiceException e) {
-           throw new CommandException(e);
-        }
-        if (list != null) {
-            request.setAttribute("sections", list);
-        } else {
-            request.setAttribute("sections", List.of("empty"));
-        }
+
 
         return sectionsPage;
     }

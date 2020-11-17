@@ -60,11 +60,13 @@ public class UserDaoImpl implements UserDao {
             String pass = resultSet.getString(USER_PASS);
             int role = resultSet.getInt(USER_ROLE);
             int status = resultSet.getInt(USER_STATUS);
+            int id = resultSet.getInt(USER_ID);
             User user = new User();
             user.setUsername(username);
             user.setPassword(pass);
             user.setRole(role);
             user.setStatus(status);
+            user.setId(id);
             return user;
         } catch (SQLException e){
            throw new DaoException(e);
@@ -88,6 +90,7 @@ public class UserDaoImpl implements UserDao {
             while (resultSet.next()){
                 System.out.println("-------1--------");
                 User user = new User();
+                user.setId(resultSet.getInt(USER_ID));
                 user.setUsername(resultSet.getString(USER_NAME));
                 user.setRating(resultSet.getFloat(USER_RATING));
                 user.setRole(resultSet.getInt(USER_ROLE));

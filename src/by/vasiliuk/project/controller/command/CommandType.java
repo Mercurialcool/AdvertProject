@@ -5,9 +5,9 @@ import by.vasiliuk.project.controller.command.impl.*;
 public enum CommandType {
     ALL_ADVERTS(new AllAdvertsCommand()),
     ALL_USERS(new AllUsersCommand()),
-    ADD_ADVERTISEMENT(new AddAdvertisementCommand()),
     EDIT_USER_PROFILE(new EditUserProfileCommand()),
-    EDIT_ADVERT(new UserAdvertListCommand()),
+    EDIT_ADVERT(new EditAdvertListCommand()),
+    SAVE_EDITED_ADVERTS(new SaveEditedAdvertsCommand()),
     DELETE_USER(new DeleteUserCommand()),
     LOGIN(new LoginCommand()),
     LOGOUT(new LogoutCommand()),

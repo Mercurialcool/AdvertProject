@@ -70,12 +70,12 @@
             <a class="menu_title" href="#"><fmt:message key="bar.language"/></a>
             <div class="menu_down">
                 <div class="menu_section">
-                    <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=en">
-                            <img src="${pageContext.request.contextPath}/img/eng.svg" alt="">
+                    <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=ru">
+                            <img src="${pageContext.request.contextPath}/img/ru.svg" alt="">
                     </a></div>
                 <div class="menu_section">
-                    <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=ru">
-                        <img src="${pageContext.request.contextPath}/img/ru.svg" alt="">
+                    <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=eng">
+                        <img src="${pageContext.request.contextPath}/img/eng.svg" alt="">
                     </a></div>
             </div>
         </div>

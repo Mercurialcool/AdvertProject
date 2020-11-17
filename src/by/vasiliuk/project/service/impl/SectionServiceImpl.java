@@ -8,21 +8,12 @@ import by.vasiliuk.project.service.ServiceException;
 
 import java.util.List;
 
-public class SectionServiceImpl implements SectionService {
+public class SectionServiceImpl {
     private static final SectionServiceImpl INSTANCE = new SectionServiceImpl();
 
     public static SectionServiceImpl getInstance() {
         return INSTANCE;
     }
 
-    public List<Section> findAll() throws ServiceException {
-        SectionDaoImpl sectionDaoImpl = SectionDaoImpl.getInstance();
-        List<Section> sections;
-        try {
-            sections = sectionDaoImpl.getAll();
-        } catch (DaoException e) {
-           throw  new ServiceException(e);
-        }
-        return sections;
-    }
+
 }

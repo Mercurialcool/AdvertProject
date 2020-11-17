@@ -30,7 +30,7 @@ String regPassword = request.getParameter(ParameterName.REG_PASSWORD);
             request.setAttribute("notEqualsPass", true);
             return JspPath.REGISTER_PAGE;
         }
-try{
+        try{
         UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
         regPassword = HashUtil.hash(regPassword);
         userServiceImpl.registerUser(nickname, mail, regPassword, "1");

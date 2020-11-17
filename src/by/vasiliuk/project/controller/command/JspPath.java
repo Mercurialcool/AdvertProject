@@ -14,6 +14,7 @@ public class JspPath {
     public static final String BLOCKED_USER = "/WEB-INF/jsp/blocked_user.jsp";
     public static final String CREATE_ADVERTISEMENT = "/WEB-INF/jsp/add_advertisement.jsp";
     public static final String EDIT_USER = "/WEB-INF/jsp/edit_user.jsp";
+    public static final String EDIT_ADVERT = "/WEB-INF/jsp/edit_advert.jsp";
     private JspPath() {
     }
 }

@@ -13,7 +13,7 @@ public class ParameterName {
     public static final String NICKNAME = "nickname";
     public static final String STATUS = "status";
     public static final String ADVERT_TITLE = "advert_title";
-    public static final String ADVERT_PLOT = "advert_plot";
+    public static final String ADVERT_TEXT = "advert_text";
     private ParameterName() {
     }
 }

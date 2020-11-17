@@ -35,10 +35,9 @@ public class AdvertServiceImpl implements AdvertService {
         }
     }
     public List<Advert> findUsersAdvertById(int userId) throws ServiceException{
-        List<Advert> advert = new ArrayList<>();
+        List<Advert> advert;
         try {
-            AdvertDao advertDao;
-            advertDao = AdvertDaoImpl.getInstance();
+            AdvertDao advertDao = AdvertDaoImpl.getInstance();
             advert = advertDao.findUsersAdvertById(userId);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -73,11 +72,11 @@ public class AdvertServiceImpl implements AdvertService {
         }
     }
 //add=save
-    public void saveAdvert(String title, String text) throws ServiceException{
+    public void saveAdvert(String title, String text, long id, String section) throws ServiceException{
         AdvertDao advertDao;
         try {
             advertDao = AdvertDaoImpl.getInstance();
-            advertDao.save(title, text);
+            advertDao.save(title, text, id, section);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

@@ -11,4 +11,5 @@ public class NameProvider {
     public static final String TO_PROFILE = "to_profile";
     public static final String SECTIONS = "sections";
     public static final String USERS_LIST = "users_list";
+    public static final String ORIGINAL_ADVERT_LIST = "originalAdvertList";
 }

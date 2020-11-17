@@ -5,6 +5,7 @@ import by.vasiliuk.project.controller.command.Command;
 import by.vasiliuk.project.controller.command.CommandException;
 import by.vasiliuk.project.controller.command.NameProvider;
 import by.vasiliuk.project.model.entity.Advert;
+import by.vasiliuk.project.model.entity.Section;
 import by.vasiliuk.project.model.entity.User;
 import by.vasiliuk.project.service.impl.AdvertServiceImpl;
 import by.vasiliuk.project.service.impl.UserServiceImpl;
@@ -17,9 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import  by.vasiliuk.project.controller.command.JspPath;
 
+import java.util.EnumSet;
+
 import java.util.List;
 
 import static by.vasiliuk.project.controller.command.ParameterName.*;
+import static by.vasiliuk.project.model.entity.Section.*;
 
 public class LoginCommand implements Command {
     static Logger logger = LogManager.getLogger();
@@ -37,8 +41,12 @@ public class LoginCommand implements Command {
             String passFromDb = user.getPassword();
             int status = user.getStatus();
             int role = user.getRole();
+            long id = user.getId();
             boolean flag = HashUtil.check(pass, passFromDb);
             if(flag) {
+                EnumSet<Section> sections = EnumSet.of(FURNITURE, CARS, ELECTRONICS, HOUSEHOLD);
+                request.getSession().setAttribute("sections", sections);
+                request.getSession().setAttribute("user_id", id);
                 if(status == 1) {
                     page = JspPath.BLOCKED_USER;
                 } else {

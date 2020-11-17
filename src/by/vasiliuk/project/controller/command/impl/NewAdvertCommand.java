@@ -2,30 +2,29 @@ package by.vasiliuk.project.controller.command.impl;
 
 import by.vasiliuk.project.controller.command.Command;
 import by.vasiliuk.project.controller.command.CommandException;
+import by.vasiliuk.project.service.ServiceException;
 import by.vasiliuk.project.service.impl.AdvertServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static by.vasiliuk.project.controller.command.JspPath.RETURN_PAGE;
-import static by.vasiliuk.project.controller.command.ParameterName.TEXT;
-import static by.vasiliuk.project.controller.command.ParameterName.TITLE;
+import static by.vasiliuk.project.controller.command.ParameterName.*;
 
 public class NewAdvertCommand implements Command {
-
-
-    //private static final long USER_ID = ;
-
-
-
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
-        String title = request.getParameter(TITLE);
-        String text = request.getParameter(TEXT);
-    //   long userId =Long.valueOf( request.getParameter(USER_ID));
+        String title = request.getParameter(ADVERT_TITLE);
+        String text = request.getParameter(ADVERT_TEXT);
+        long userId = (Long) request.getSession().getAttribute("user_id");
+        String section = request.getParameter("section_selected");
         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
-        //advertService.saveAdvert(title, text, userId);
+        try {
+            advertServiceImpl.saveAdvert(title, text, userId, section);
+
+
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         return RETURN_PAGE;
-
-
     }
 }

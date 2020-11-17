@@ -17,7 +17,6 @@ public class RefererFilter implements Filter {
         StringBuffer url = httpRequest.getRequestURL();
         String page = url.substring(url.lastIndexOf("/"));
         HttpSession session = httpRequest.getSession(true);
-//        String referer = request.getHeader("referer");
         session.setAttribute( "current_referer", page);
         chain.doFilter(req, resp);
     }

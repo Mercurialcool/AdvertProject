@@ -73,7 +73,7 @@ public class AdvertDaoImpl implements AdvertDao {
     }
 //save=add
     @Override
-    public void save(String advertTitle, String advertText) throws DaoException {
+    public void save(String advertTitle, String advertText, long id, String section) throws DaoException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()){
             Connection connection = connectionWrapper.getConnection();
@@ -81,7 +81,8 @@ public class AdvertDaoImpl implements AdvertDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, advertTitle);
             preparedStatement.setString(2, advertText);
-
+            preparedStatement.setInt(3, (int)id);
+            preparedStatement.setString(4, section);
             preparedStatement.execute();
         } catch (SQLException e){
             throw new DaoException(e);
@@ -107,7 +108,20 @@ public class AdvertDaoImpl implements AdvertDao {
         List<Advert> adverts = new ArrayList<>();
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()) {
         Connection connection = connectionWrapper.getConnection();
-        return adverts;
+            String sql = SQL_FIND_USERS_ADVERTISEMENTS;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Advert advert = new Advert();
+                advert.setId(resultSet.getInt(1));
+                advert.setTitle(resultSet.getString(2));
+                advert.setText(resultSet.getString(3));
+                adverts.add(advert);
+            }
+            return adverts;
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables);
         }
     }
 
