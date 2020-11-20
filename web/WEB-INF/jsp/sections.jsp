@@ -14,6 +14,13 @@
 <div class="container">
     <h2><fmt:message key="sections"/></h2>
     <form>
+        <c:forEach items="${sessionScope.sections}" var="section">
+            <form action="controller">
+                <input type="hidden" name = "command" value="Section_list"/>
+                <input type="submit" name="section"  value="${section.name()}"/><br/>
+            </form>
+        </c:forEach>
+
         <table  class="table table-striped">
             <thead>
             <tr>

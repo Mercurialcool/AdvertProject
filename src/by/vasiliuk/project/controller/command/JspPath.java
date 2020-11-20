@@ -15,6 +15,7 @@ public class JspPath {
     public static final String CREATE_ADVERTISEMENT = "/WEB-INF/jsp/add_advertisement.jsp";
     public static final String EDIT_USER = "/WEB-INF/jsp/edit_user.jsp";
     public static final String EDIT_ADVERT = "/WEB-INF/jsp/edit_advert.jsp";
+    public static final String SECTION_ADVERT = "/WEB-INF/jsp/section_advert.jsp";
     private JspPath() {
     }
 }

@@ -45,9 +45,20 @@ public class AdvertServiceImpl implements AdvertService {
         return advert;
     }
 
+    @Override
+    public List<Advert> findAdvertBySection(int sectionId) throws ServiceException {
+        AdvertDao advertDao;
+        try {
+            advertDao = AdvertDaoImpl.getInstance();
+            return advertDao.findAdvertBySection(sectionId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 
     public Optional<Advert> findAdById(long id)throws ServiceException{
-        AdvertDao advertDao = null;
+        AdvertDao advertDao;
         try {
             advertDao = AdvertDaoImpl.getInstance();
         } catch (DaoException e) {

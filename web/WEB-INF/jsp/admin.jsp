@@ -26,6 +26,7 @@
                     <thead>
                     <tr>
                         <td>UserName</td>
+                        <td>UserId</td>
                         <td>Rating</td>
                         <td>Role</td>
                         <td>Status</td>
@@ -38,7 +39,7 @@
                             <a href="controller?command=delete_User&del_user=${user.username}"> ${user.username}</a>
                             </td>
                             <td>
-                                    ${user.id}
+
                                 <a href="controller?command=edit_Advert&user_id=${user.id}"> <fmt:message key="edit_users_adverts"/></a>
 
                             </td>

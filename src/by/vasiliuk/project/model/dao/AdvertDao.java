@@ -12,4 +12,5 @@ public interface AdvertDao extends BaseDao {
     List<Advert> findBySectionId(long id) throws DaoException;
     String editAdvert(String advertTitle, String advertText) throws DaoException;
     List<Advert> findUsersAdvertById(int userId) throws DaoException;
+    List<Advert> findAdvertBySection(int sectionId) throws DaoException;
 }

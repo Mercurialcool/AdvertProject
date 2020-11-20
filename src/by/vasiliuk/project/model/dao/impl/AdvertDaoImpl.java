@@ -125,6 +125,30 @@ public class AdvertDaoImpl implements AdvertDao {
         }
     }
 
+    @Override
+    public List<Advert> findAdvertBySection(int sectionId) throws DaoException {
+        List<Advert> adverts = new ArrayList<>();
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()){
+            Connection connection = connectionWrapper.getConnection();
+            String sql = SQL_FIND_BY_SECTION_ADVERT;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, sectionId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                adverts.add(new Advert(resultSet.getLong(ADVERT_ID),
+                        resultSet.getString(ADVERT_TEXT),
+                        resultSet.getString(ADVERT_TITLE)));
+            }
+        } catch (SQLException e){
+            throw new DaoException(e);
+        } finally {
+            ///
+        }
+        return adverts;
+    }
+
     public String editAdvert(String advertTitle, String advertText) throws DaoException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         int save;

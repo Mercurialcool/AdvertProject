@@ -25,8 +25,8 @@
                     <thead>
                     <tr>
                         <td>Id</td>
-                        <td>Text</td>
                         <td>Title</td>
+                        <td>Text</td>
 
                     </tr>
                     </thead>

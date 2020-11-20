@@ -13,4 +13,5 @@ public interface AdvertService {
      void saveAdvert(String title, String text, long id, String section) throws ServiceException;
      List<Advert> editAdvert(String advertTitle, String advertText) throws ServiceException;
      List<Advert> findUsersAdvertById(int userId) throws ServiceException;
+     List<Advert> findAdvertBySection(int sectionId) throws ServiceException;
 }

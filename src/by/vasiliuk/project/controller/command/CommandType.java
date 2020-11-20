@@ -21,6 +21,7 @@ public enum CommandType {
     TO_PROFILE(new ToProfileCommand()),
     TO_EDIT_USER(new ToEditUserCommand()),
     SECTIONS(new SectionsCommand()),
+    SECTION_LIST(new SectionListCommand()),
     GET_USER(new GetUserCommand()),
     EDIT_USER_COMMAND(new EditUserProfileCommand())
     ;
