@@ -11,19 +11,22 @@
     <title>New Advertisement</title>
 </head>
 <body>
-
-<form class="" action="controller" method="get">
-    <input type="hidden" name = "command" value="New_Advert"/>
-    <input type="text" name="advert_title" class="form-control" placeholder=<fmt:message key="advert_title"/> required autofocus>
-    <input type="text" name="advert_text" class="form-control" placeholder=<fmt:message key="advert_plot"/> required autofocus>
-    <select name="section_selected">
+<div class="h-100 d-flex flex-column justify-content-center align-items-center">
+    <div class="w-25 mb-5">
+<form class="d-flex flex-column justify-content-center align-items-center" action="controller" method="get">
+    <h3 class="h3 mb-3">Add advertisement</h3>
+    <select name="section_selected" class="mb-3">
         <option disabled>Выберите категорию</option>
         <c:forEach items="${sessionScope.sections}" var="sec_elem">
             <option value=${sec_elem.id} >${sec_elem}</option>
         </c:forEach>
     </select>
+    <input type="hidden" name = "command" value="New_Advert"/>
+    <input type="text" name="advert_title" class="form-control mb-1" placeholder=<fmt:message key="advert_title"/> required autofocus>
+    <input type="text" name="advert_text" class="form-control mb-3" placeholder=<fmt:message key="advert_plot"/> required autofocus>
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="login"><fmt:message key="confirm"/></button>
 </form>
-
+    </div>
+</div>
 </body>
 </html>

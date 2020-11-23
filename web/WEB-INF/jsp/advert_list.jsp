@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value="ru"/>
 <fmt:setBundle basename="resources.messages"/>
-<fmt:message key="str"/>
 <html>
 
 
@@ -50,11 +49,13 @@
             </c:otherwise>
         </c:choose>
     </form>
-    <form method="get" action="controller">
+    <form method="get" action="controller" class="container-fluid d-flex justify-content-center align-items-center">
+        <ul class="list-unstyled">
         <li class="nav-item">
             <input type="hidden" name="command" value="To_Create_Advertisement">
             <input type="submit" value="<fmt:message key="addAdvertisement"/>">
         </li>
+        </ul>
     </form>
 </div>
 </body>

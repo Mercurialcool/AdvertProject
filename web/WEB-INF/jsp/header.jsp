@@ -3,11 +3,12 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="resources.messages"/>
 <%@ include file="head_styles_scripts.jsp" %>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <div class="collapse navbar-collapse" id="navbaßrsExampleDefault">
-            <c:if test="${sessionScope.role == 0 || sessionScope.role == 1 }">
-                <form method="get" action="controller">
-                <li class="nav-item">
+<nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top container-fluid align-items-center justify-content-around">
+    <div></div>
+    <ul class="mb-0 list-unstyled d-flex">
+    <c:if test="${sessionScope.role == 0 || sessionScope.role == 1 }">
+                <form class="mb-0" method="get" action="controller">
+                <li  class="nav-item">
                     <input type="hidden" name="command" value="Logout">
                     <input type="submit" value="<fmt:message key="logout"/>">
                 </li>
@@ -15,39 +16,39 @@
             </c:if>
             <c:if test="${sessionScope.role == null || sessionScope.role == -1}">
 
-                <form method="get" action="controller">
+                <form class="mb-0" method="get" action="controller">
                     <li class="nav-item">
                         <input type="hidden" name="command" value="Login">
                         <input type="submit" value="<fmt:message key="login"/>">
 
                     </li>
                 </form>
-                 <form method="get" action="controller">
+                 <form class="mb-0 ml-5" method="get" action="controller">
                 <li class="nav-item">
                     <input type="hidden" name="command" value="To_Register">
                     <input type="submit" value="<fmt:message key="register"/>">
                 </li>
 </form>
             </c:if>
-<form method="get" action="controller">
+<form class="mb-0 ml-5" method="get" action="controller">
     <li class="nav-item">
         <input type="hidden" name ="command" value="All_Adverts"/>
         <input type="submit" value="<fmt:message key="adverts"/>"/>
     </li>
 </form>
 
-<form method="get" action="controller">
+<form class="mb-0 ml-5" method="get" action="controller">
             <li class="nav-item">
                 <input type="hidden" name="command" value="Sections" />
                 <input type="submit" value="<fmt:message key="sections"/>">
             </li>
 </form>
 <c:if test="${user ne null}">
-<form method="get" action="controller">
+<form class="mb-0 ml-5" method="get" action="controller">
             <li class="nav-item">
                 <input type="hidden" name="command" value="To_Profile" />
                 <input type="submit" value="<fmt:message key="profile"/>">
-            </li>>
+            </li>
 </form>
 </c:if>
             <c:if test="${sessionScope.id != null}">
@@ -55,7 +56,6 @@
                     <a class="nav-link" href="new-advert-page.jsp">New Advert</a>
                 </li>
             </c:if>
-        </ul>
         <form class="form-inline my-2 my-lg-0">
             <c:if test="${sessionScope.name != null}">
                 <a class="nav-link" href="profile-page">
@@ -63,8 +63,7 @@
                 </a>
             </c:if>
         </form>
-    </div>
-
+    </ul>
     <div class="header_language">
         <div class="menu">
             <a class="menu_title" href="#"><fmt:message key="bar.language"/></a>

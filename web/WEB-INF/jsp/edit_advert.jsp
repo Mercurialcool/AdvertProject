@@ -19,7 +19,7 @@
         <table  class="table table-striped">
             <thead>
             <tr>
-                <td>Id</td>
+                <td class="pl-5">Id</td>
                 <td>Text</td>
                 <td>Title</td>
 
@@ -29,10 +29,10 @@
                 <c:set var="classSuccess" value=""/>
 
                 <tr class="${classSuccess}">
-                    <td>${ad.id}</td>
-                    <td><input type="text" name="advert_text" value="${ad.text}"></td>
+                    <td class="pl-5">${ad.id}</td>
+                    <td><input class="pl-1 rounded" type="text" name="advert_text" value="${ad.text}"></td>
                     <td>
-                        <input type="text" name="advert_title" value="${ad.title}">
+                        <input class="pl-1 rounded" type="text" name="advert_title" value="${ad.title}">
                     </td>
                 </tr>
             </c:forEach>
