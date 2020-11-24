@@ -4,8 +4,6 @@
 <fmt:setLocale value="ru"/>
 <fmt:setBundle basename="resources.messages"/>
 <html>
-
-
 <head>
     <%@ include file="head_styles_scripts.jsp" %>
     <link href="static/css/starter.css" rel="stylesheet" type="text/css"/>
@@ -38,7 +36,7 @@
                             <td>${ad.id}</td>
                             <td>${ad.text}</td>
                             <td>
-                                <a href="ad-view-page?id=${ad.id}">${ad.title}</a>
+                                <a href="controller?command=view_advertisement&id=${ad.id}">${ad.title}</a>
                             </td>
                         </tr>
                     </c:forEach>

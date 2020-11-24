@@ -3,6 +3,7 @@ package by.vasiliuk.project.model.dao.impl;
 import by.vasiliuk.project.model.dao.AdvertDao;
 import by.vasiliuk.project.model.dao.DaoException;
 import by.vasiliuk.project.model.entity.Advert;
+import by.vasiliuk.project.model.entity.Section;
 import by.vasiliuk.project.model.pool.ConnectionPool;
 import by.vasiliuk.project.model.pool.ConnectionWrapper;
 
@@ -51,19 +52,26 @@ public class AdvertDaoImpl implements AdvertDao {
         return adverts;
     }
     @Override
-    public Optional<Advert> findById(long id) throws DaoException {
+    public Optional<Advert> findById(int advertId) throws DaoException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()){
             Connection connection = connectionWrapper.getConnection();
             String sql = SQL_FIND_ADVERT_BY_ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1, id);
+            preparedStatement.setInt(1, advertId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                return Optional.of(new Advert(resultSet.getInt(ADVERT_ID),
-                        resultSet.getString(ADVERT_TITLE),
-                        resultSet.getString(ADVERT_TEXT)));
+                Advert advert = new Advert();
+                advert.setId(resultSet.getInt(ADVERT_ID));
+                advert.setTitle(resultSet.getString(ADVERT_TITLE));
+                advert.setText(resultSet.getString(ADVERT_TEXT));
+                int sectionId = resultSet.getInt("sections_sectionId");
+                String sectionName = Section.getName(sectionId);
+                advert.setSection(sectionName);
+                int userId = resultSet.getInt("users_userId");//fixme get name but id
+                advert.setUserName(String.valueOf(userId));
+                return Optional.of(advert);
             } else {
                 return Optional.empty();
             }
@@ -137,7 +145,7 @@ public class AdvertDaoImpl implements AdvertDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
-                adverts.add(new Advert(resultSet.getLong(ADVERT_ID),
+                adverts.add(new Advert(resultSet.getInt(ADVERT_ID),
                         resultSet.getString(ADVERT_TEXT),
                         resultSet.getString(ADVERT_TITLE)));
             }
@@ -163,7 +171,7 @@ public class AdvertDaoImpl implements AdvertDao {
             throw new DaoException(e);
         }
 
-        return null;
+        return null;//fixme
     }
 
     @Override
@@ -178,14 +186,14 @@ public class AdvertDaoImpl implements AdvertDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
-                adverts.add(new Advert(resultSet.getLong(ADVERT_ID),
+                adverts.add(new Advert(resultSet.getInt(ADVERT_ID),
                         resultSet.getString(ADVERT_TEXT),
                         resultSet.getString(ADVERT_TITLE)));
             }
         } catch (SQLException e){
             throw new DaoException(e);
         } finally {
-            ///
+            ///fixme
         }
         return adverts;
     }

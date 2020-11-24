@@ -28,7 +28,7 @@
                     <input type="hidden" name="command" value="To_Register">
                     <input type="submit" value="<fmt:message key="register"/>">
                 </li>
-</form>
+                 </form>
             </c:if>
 <form class="mb-0 ml-5" method="get" action="controller">
     <li class="nav-item">
@@ -69,14 +69,33 @@
             <a class="menu_title" href="#"><fmt:message key="bar.language"/></a>
             <div class="menu_down">
                 <div class="menu_section">
-                    <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=ru">
+                    <form class="mb-0 ml-5" method="get" action="controller">
+                        <li class="nav-item">
+                            <input type="hidden" name="command" value="LANGUAGE" />
+                            <input type="hidden" name="language" value="ru" />
+                            <input type="submit" value="<fmt:message key="bar.language"/>">
+                        </li>
+                    </form>
+            <!--        <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=ru">
                             <img src="${pageContext.request.contextPath}/img/ru.svg" alt="">
                     </a></div>
+                    -->
                 <div class="menu_section">
+                    <form class="mb-0 ml-5" method="get" action="controller">
+                        <li class="nav-item">
+                            <input type="hidden" name="command" value="LANGUAGE" />
+                            <input type="hidden" name="language" value="en" />
+                            <input type="submit" value="<fmt:message key="bar.language"/>">
+                        </li>
+                    </form>
+<!--
                     <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=eng">
                         <img src="${pageContext.request.contextPath}/img/eng.svg" alt="">
-                    </a></div>
+                    </a> -->
+                    </div>
+
             </div>
         </div>
+    </div>
     </div>
 </nav>

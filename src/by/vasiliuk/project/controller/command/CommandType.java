@@ -15,6 +15,7 @@ public enum CommandType {
     NEW_ADVERT(new NewAdvertCommand()),
     ADVERTS_BY_SECTION_ID(new GetAdvertsBySectionIdCommand()),
     DEFAULT(new DefaultCommand()),
+    VIEW_ADVERTISEMENT(new ViewAdvertisementCommand()),
     REGISTRATION(new RegisterUserCommand()),
     TO_CREATE_ADVERTISEMENT(new ToCreateAdvertisementCommand()),
     TO_REGISTER(new ToRegisterCommand()),

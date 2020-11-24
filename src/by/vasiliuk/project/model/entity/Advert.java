@@ -4,19 +4,20 @@ import java.util.Objects;
 
 public class Advert {
 
-    private long id;
+    private int id;
     private String text;
     private String title;
     private String userName;
+    private String section;
 
-    public Advert(long id, String text, String title, String userName) {
+    public Advert(int id, String text, String title, String userName) {
         this.id = id;
         this.text = text;
         this.title = title;
         this.userName = userName;
     }
 
-    public Advert(long id, String text, String title) {
+    public Advert(int id, String text, String title) {
         this.id = id;
         this.text = text;
         this.title = title;
@@ -25,11 +26,11 @@ public class Advert {
     public Advert() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -57,6 +58,14 @@ public class Advert {
         this.userName = userName;
     }
 
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,7 +76,8 @@ public class Advert {
         if (id != advert.id) return false;
         if (text != null ? !text.equals(advert.text) : advert.text != null) return false;
         if (title != null ? !title.equals(advert.title) : advert.title != null) return false;
-        return userName != null ? userName.equals(advert.userName) : advert.userName == null;
+        if (userName != null ? !userName.equals(advert.userName) : advert.userName != null) return false;
+        return section != null ? section.equals(advert.section) : advert.section == null;
     }
 
     @Override
@@ -76,6 +86,7 @@ public class Advert {
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        result = 31 * result + (section != null ? section.hashCode() : 0);
         return result;
     }
 
@@ -86,6 +97,7 @@ public class Advert {
         sb.append(", text='").append(text).append('\'');
         sb.append(", title='").append(title).append('\'');
         sb.append(", userName='").append(userName).append('\'');
+        sb.append(", section='").append(section).append('\'');
         sb.append('}');
         return sb.toString();
     }

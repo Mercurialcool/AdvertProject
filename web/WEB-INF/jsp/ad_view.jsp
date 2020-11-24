@@ -21,15 +21,18 @@
                                 <div class="col-md-9">
                                     <div class="card-body">
                                         <div class="news-content">
-                                            <a href="#"><h2>${ad.title} </h2></a>
-                                            <p>${ad.text}</p>
+                                            <a href="#"><h2>${advert.title} </h2></a>
+                                            <p>${advert.text}</p>
                                         </div>
                                         <div class="news-footer">
                                             <div class="news-author">
                                                 <ul class="list-inline list-unstyled">
                                                     <li class="list-inline-item text-secondary">
                                                         <i class="fa fa-user"></i>
-                                                        ${ad.username}
+                                                        ${advert.userName}
+                                                        <br/>
+                                                        ${advert.section}
+
                                                     </li>
                                                 </ul>
                                             </div>

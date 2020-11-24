@@ -57,18 +57,14 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
 
-    public Optional<Advert> findAdById(long id)throws ServiceException{
+    public Optional<Advert> findAdById(int advertId)throws ServiceException{
         AdvertDao advertDao;
+        Optional<Advert> advert;
         try {
             advertDao = AdvertDaoImpl.getInstance();
+            advert= advertDao.findById(advertId);
         } catch (DaoException e) {
             throw new ServiceException(e);
-        }
-        Optional<Advert> advert= null;
-        try {
-            advert= advertDao.findById(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
         }
         return advert;
     }
