@@ -23,7 +23,9 @@ public class ConnectionWrapper implements Closeable, AutoCloseable{
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         connectionPool.releaseConnection(this);
     }
-
+    void reallyClose() throws SQLException{
+        connection.close();
+    }
     public Statement createStatement() throws SQLException {
         return connection.createStatement();
     }

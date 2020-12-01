@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import  by.vasiliuk.project.controller.command.JspPath;
 
+import static by.vasiliuk.project.controller.command.NameProvider.NOT_EQUAL_PASS;
+
 
 public class RegisterUserCommand implements Command {
     static Logger logger = LogManager.getLogger();
@@ -27,7 +29,7 @@ String mail = request.getParameter(ParameterName.EMAIL);
 String regPassword = request.getParameter(ParameterName.REG_PASSWORD);
         String regPasswordRepeat = request.getParameter(ParameterName.REG_PASSWORD_REPEAT);
         if(!regPassword.equals(regPasswordRepeat)) {
-            request.setAttribute("notEqualsPass", true);
+            request.setAttribute(NOT_EQUAL_PASS, true);
             return JspPath.REGISTER_PAGE;
         }
         try{

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import static by.vasiliuk.project.model.dao.SqlProvider.*;
 import static by.vasiliuk.project.model.dao.DaoProvider.*;
 
@@ -66,10 +67,10 @@ public class AdvertDaoImpl implements AdvertDao {
                 advert.setId(resultSet.getInt(ADVERT_ID));
                 advert.setTitle(resultSet.getString(ADVERT_TITLE));
                 advert.setText(resultSet.getString(ADVERT_TEXT));
-                int sectionId = resultSet.getInt("sections_sectionId");
+                int sectionId = resultSet.getInt(SECTIONS_SECTION_ID);
                 String sectionName = Section.getName(sectionId);
                 advert.setSection(sectionName);
-                int userId = resultSet.getInt("users_userId");//fixme get name but id
+                int userId = resultSet.getInt(USERS_USER_ID);//fixme get name but id
                 advert.setUserName(String.valueOf(userId));
                 return Optional.of(advert);
             } else {

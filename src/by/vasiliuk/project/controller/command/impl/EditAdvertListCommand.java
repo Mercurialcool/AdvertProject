@@ -12,11 +12,15 @@ import by.vasiliuk.project.service.impl.UserServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static by.vasiliuk.project.controller.command.NameProvider.USER_ID;
+import static by.vasiliuk.project.controller.command.NameProvider.USER_NAME;
+
 public class EditAdvertListCommand implements Command {
+
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
-        String userId = request.getParameter("user_id");
-        String userName = request.getParameter("userName");
+        String userId = request.getParameter(USER_ID);
+        String userName = request.getParameter(USER_NAME);
         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
         List<Advert> adverts;
         try {

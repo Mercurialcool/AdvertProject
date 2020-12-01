@@ -3,16 +3,19 @@ package by.vasiliuk.project.controller.command.impl;
 import by.vasiliuk.project.controller.command.Command;
 import javax.servlet.http.HttpServletRequest;
 
+import static by.vasiliuk.project.controller.command.NameProvider.*;
+
 public class LanguageCommand implements Command {
+
     @Override
     public String execute(HttpServletRequest request) {
-        String language = request.getParameter("language");
-        if("ru".equalsIgnoreCase(language)){
-            request.getSession().setAttribute("locale", "ru");
+        String language = request.getParameter(LANGUAGE);
+        if(RUSSIAN.equalsIgnoreCase(language)){
+            request.getSession().setAttribute(LOCALE, RUSSIAN);
         } else {
-            request.getSession().setAttribute("locale", "en");
+            request.getSession().setAttribute(LOCALE, ENGLISH);
         }
-        String path = (String)request.getSession().getAttribute("current_referer");
-        return "/WEB-INF/jsp/" + path;
+        String path = (String)request.getSession().getAttribute(REFERER);
+        return JSP_TEMP + path;
     }
 }

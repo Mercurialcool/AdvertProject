@@ -11,11 +11,13 @@ import by.vasiliuk.project.service.impl.UserServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static by.vasiliuk.project.controller.command.NameProvider.DELETE_USER;
+
 public class DeleteUserCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
-        String deleteUserName = request.getParameter("del_user");
+        String deleteUserName = request.getParameter(DELETE_USER);
 
         UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
         List<User> users;

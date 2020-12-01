@@ -12,8 +12,6 @@ public class SectionsCommand implements Command {
     public String execute(HttpServletRequest request) throws CommandException {
 
         String sectionsPage = JspPath.SECTIONS_PAGE;
-
-
         return sectionsPage;
     }
 }

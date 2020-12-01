@@ -11,17 +11,20 @@ import by.vasiliuk.project.service.impl.AdvertServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static by.vasiliuk.project.controller.command.NameProvider.*;
+
 public class SectionListCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
-        String section = request.getParameter("section");
-        request.setAttribute("section_selected", section);
+
+        String section = request.getParameter(SECTION);
+        request.setAttribute(SECTION_SELECTED, section);
         Section sectionType = Section.valueOf(section);
         int sectionId = sectionType.getId();
         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
         try {
             List<Advert> advertList = advertServiceImpl.findAdvertBySection(sectionId);
-            request.setAttribute("section_adverts", advertList);
+            request.setAttribute(SECTION_ADVERTS, advertList);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

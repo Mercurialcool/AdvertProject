@@ -16,7 +16,7 @@ public interface BaseDao {
             try {
                 set.close();
             } catch (SQLException e) {
-                logger.error("result set is not closed", e);
+                logger.error("result set is not closed", e);//todo const?
             }
         }
     }

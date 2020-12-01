@@ -16,5 +16,7 @@ public class DaoProvider {
 
     public static final String SECTION_ID = "sectionID";
     public static final String SECTION_TITLE = "sectionTitle";
+    public static final String SECTIONS_SECTION_ID = "sections_sectionId";
+    public static final String USERS_USER_ID = "users_userId";
 
 }

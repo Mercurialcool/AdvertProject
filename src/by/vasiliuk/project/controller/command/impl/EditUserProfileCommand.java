@@ -9,6 +9,9 @@ import by.vasiliuk.project.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static by.vasiliuk.project.controller.command.NameProvider.UPDATE_USER;
+import static by.vasiliuk.project.controller.command.NameProvider.USER;
+
 public class EditUserProfileCommand implements Command {
 
     @Override
@@ -16,14 +19,14 @@ public class EditUserProfileCommand implements Command {
 
         String mail = request.getParameter(ParameterName.EMAIL);
         String nickname = request.getParameter(ParameterName.NICKNAME);
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute(USER);
         String oldNickname = user.getUsername();
         UserServiceImpl service = UserServiceImpl.getInstance();
         boolean update = false;//service.updateUser(oldNickname, nickname, mail);
-        request.setAttribute("update_user", update);
+        request.setAttribute(UPDATE_USER, update);
         if (update){
             user.setUsername(nickname);
-            request.getSession(true).setAttribute("user", user);
+            request.getSession(true).setAttribute(USER, user);
           //  request.setAttribute("update_user", true);
         }
         return JspPath.PROFILE_PAGE;

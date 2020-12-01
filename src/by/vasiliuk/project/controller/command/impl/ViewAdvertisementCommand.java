@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+import static by.vasiliuk.project.controller.command.NameProvider.ID;
+
 public class ViewAdvertisementCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
-        String id = request.getParameter("id");
+        String id = request.getParameter(ID);
         int advertId = Integer.parseInt(id);
 
         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();

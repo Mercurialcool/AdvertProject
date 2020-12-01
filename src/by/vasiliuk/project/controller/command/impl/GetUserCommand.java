@@ -17,7 +17,7 @@ public class GetUserCommand implements Command {
     public String execute(HttpServletRequest request) throws CommandException {
         String strId = request.getParameter("USER_ID");
        // String password = request.getParameter("PASS");
-
+//todo ask
 
         long id = Long.valueOf(strId);
         User userTo;

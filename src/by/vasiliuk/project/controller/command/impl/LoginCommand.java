@@ -22,6 +22,7 @@ import java.util.EnumSet;
 
 import java.util.List;
 
+import static by.vasiliuk.project.controller.command.NameProvider.*;
 import static by.vasiliuk.project.controller.command.ParameterName.*;
 import static by.vasiliuk.project.model.entity.Section.*;
 
@@ -31,6 +32,7 @@ public class LoginCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
 //todo create localization at jsp
+
          String page;
          String username = request.getParameter(NAME);
          String pass = request.getParameter(PASSWORD);
@@ -45,8 +47,8 @@ public class LoginCommand implements Command {
             boolean flag = HashUtil.check(pass, passFromDb);
             if(flag) {
                 EnumSet<Section> sections = EnumSet.of(FURNITURE, CARS, ELECTRONICS, HOUSEHOLD);
-                request.getSession().setAttribute("sections", sections);
-                request.getSession().setAttribute("user_id", id);
+                request.getSession().setAttribute(SECTIONS, sections);
+                request.getSession().setAttribute(USER_ID, id);
                 if(status == 1) {
                     page = JspPath.BLOCKED_USER;
                 } else {
@@ -54,13 +56,13 @@ public class LoginCommand implements Command {
                         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
                         List<Advert> adverts = advertServiceImpl.findAllAds();
                         request.setAttribute(NameProvider.ADD_LIST, adverts);
-                        request.getSession(true).setAttribute("role", role);
-                        request.getSession(true).setAttribute("user", user);
+                        request.getSession(true).setAttribute(ROLE, role);
+                        request.getSession(true).setAttribute(USER, user);
                         page = JspPath.AD_LIST;
                     } else  if (role == 1){
                          List<User>  users = userServiceImpl.findAllUsers();
                         request.setAttribute(NameProvider.USERS_LIST, users);
-                        request.getSession(true).setAttribute("role", role);
+                        request.getSession(true).setAttribute(ROLE, role);
                         page = JspPath.ADMIN_PAGE;
                     } else {
                         page = JspPath.LOGIN_PAGE;
@@ -75,5 +77,5 @@ public class LoginCommand implements Command {
         }
         return page;
     }
-
+//todo make same log-ways and constants
 }
