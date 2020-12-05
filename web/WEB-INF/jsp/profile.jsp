@@ -1,9 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
-<link rel="stylesheet" href="./css/bootstrap.min.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setLocale value="ru"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="resources.messages"/>
+<%@ include file="head_styles_scripts.jsp" %>
 <html>
 <head>
     <%@ include file="header.jsp" %>

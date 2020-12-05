@@ -18,7 +18,6 @@ public class DeleteUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         String deleteUserName = request.getParameter(DELETE_USER);
-
         UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
         List<User> users;
         try {

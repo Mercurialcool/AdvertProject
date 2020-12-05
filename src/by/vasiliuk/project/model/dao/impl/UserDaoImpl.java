@@ -101,13 +101,34 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e){
             e.printStackTrace();
         }
-        System.out.println("list----------"+users);
+        System.out.println("list----------"+users);//fixme
         return users;
     }
 
     @Override
     public boolean updateUser(String oldNickname, String nickName, String email) throws DaoException {
-        return false;
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        int update;
+        try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()) {
+            Connection connection = connectionWrapper.getConnection();
+//            String sqlFindMail = SQL_FIND_EMAIL_BY_USER;
+//            PreparedStatement statementForMail = connection.prepareStatement(sqlFindMail);
+//            statementForMail.setString(1, nickName);
+//            ResultSet resultSet = statementForMail.executeQuery();
+//            String oldEmail = resultSet.getString(1);
+//            if(email.equals(oldEmail)) {
+//
+//            }
+            String sqlUpdate = SQL_USER_UPDATE;
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
+            preparedStatement.setString(1, nickName);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, oldNickname);
+            update = preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            throw new DaoException(e);
+        }
+        return update == 1;
     }
 
     @Override

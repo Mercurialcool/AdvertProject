@@ -20,11 +20,11 @@ public class EditAdvertListCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         String userId = request.getParameter(USER_ID);
-        String userName = request.getParameter(USER_NAME);
+        String userName = request.getParameter(USER_NAME);//fixme
         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
         List<Advert> adverts;
         try {
-        adverts = advertServiceImpl.findUsersAdvertById(Integer.parseInt(userId));
+           adverts = advertServiceImpl.findUsersAdvertById(Integer.parseInt(userId));
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

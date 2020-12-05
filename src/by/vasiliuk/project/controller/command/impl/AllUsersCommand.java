@@ -13,7 +13,6 @@ import java.util.List;
 
 public class AllUsersCommand implements Command {
 
-
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
 

@@ -1,5 +1,6 @@
 package by.vasiliuk.project.service.impl;
 
+import by.vasiliuk.project.controller.validator.Validator;
 import by.vasiliuk.project.model.dao.UserDao;
 import by.vasiliuk.project.model.entity.User;
 import by.vasiliuk.project.model.dao.DaoException;
@@ -67,10 +68,18 @@ public class UserServiceImpl implements UserService {
         return user.map(User::getUsername);
     }
 
-    public boolean updateUser(String oldNickname, String nickName, String email) throws ServiceException
-    {
+    public boolean updateUser(String oldNickname, String nickName, String email) throws ServiceException {
         UserDao userDao = UserDaoImpl.getInstance();
-        return false;
+        boolean updateFlag = false;
+        if(nickName != null && Validator.isValidName(nickName)) {
+            if(email != null && Validator.isValidEmail(email))
+            try {
+                updateFlag = userDao.updateUser(oldNickname, nickName, email);
+            } catch (DaoException throwables) {
+                throw new ServiceException(throwables);
+            }
+        }
+        return updateFlag;
 
     }
 

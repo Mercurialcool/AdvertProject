@@ -23,10 +23,10 @@ public class RegisterUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
 
-    String page;
-String mail = request.getParameter(ParameterName.EMAIL);
+        String page;
+        String mail = request.getParameter(ParameterName.EMAIL);
         String nickname = request.getParameter(ParameterName.NICKNAME);
-String regPassword = request.getParameter(ParameterName.REG_PASSWORD);
+        String regPassword = request.getParameter(ParameterName.REG_PASSWORD);
         String regPasswordRepeat = request.getParameter(ParameterName.REG_PASSWORD_REPEAT);
         if(!regPassword.equals(regPasswordRepeat)) {
             request.setAttribute(NOT_EQUAL_PASS, true);
