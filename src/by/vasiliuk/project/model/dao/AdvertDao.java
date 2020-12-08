@@ -10,7 +10,7 @@ public interface AdvertDao extends BaseDao {
     Optional<Advert> findById(int advertId) throws DaoException;
     void save(String advertTitle, String advertText, long id, String section) throws DaoException;
     List<Advert> findBySectionId(long id) throws DaoException;
-    String editAdvert(String advertTitle, String advertText) throws DaoException;
+    int editAdvert(List<Advert> list) throws DaoException;
     List<Advert> findUsersAdvertById(int userId) throws DaoException;
     List<Advert> findAdvertBySection(int sectionId) throws DaoException;
 }

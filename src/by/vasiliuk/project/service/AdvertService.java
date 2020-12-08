@@ -14,4 +14,5 @@ public interface AdvertService {
      List<Advert> editAdvert(String advertTitle, String advertText) throws ServiceException;
      List<Advert> findUsersAdvertById(int userId) throws ServiceException;
      List<Advert> findAdvertBySection(int sectionId) throws ServiceException;
+     int updateAdvertsByUser(List<Advert>  changeList) throws ServiceException;
 }

@@ -21,7 +21,7 @@ public class GetAdvertsBySectionIdCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         List<Advert> advertTos = new ArrayList<>();
-        AdvertServiceImpl advertServiceImpl = new AdvertServiceImpl();
+        AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
         //long id = ADVERTS_BY_SECTION;//todo
         List<Advert> adverts ;
         try {

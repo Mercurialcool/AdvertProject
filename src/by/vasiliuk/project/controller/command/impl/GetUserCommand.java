@@ -19,7 +19,6 @@ public class GetUserCommand implements Command {
 //todo ask
 
         long id = Long.valueOf(strId);
-        User userTo;
         UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
         Optional<User> userOptional;
         try {

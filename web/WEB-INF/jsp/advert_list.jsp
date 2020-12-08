@@ -14,6 +14,11 @@
 </body>
 <body>
 <div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h2><fmt:message key="adverts"/></h2>
     <form action="ad" method="post" id="advertForm" role="form" >
         <c:choose>

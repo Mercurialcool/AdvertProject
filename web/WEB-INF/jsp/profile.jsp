@@ -17,7 +17,7 @@
     <input type="text" name="nickname" value="${sessionScope.user.username}" id="inputNick" class="form-control" required autofocus>
     <label for="inputEmail" class="sr-only"><fmt:message key="email"/></label>
     <input type="text" name="email" id="inputEmail" class="form-control" placeholder="e-mail" required autofocus>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" value="register"><fmt:message key="register"/></button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" value="register"><fmt:message key="confirm"/></button>
 <c:if test="${update_user}">
     <fmt:message key="updateUserTrue"/>
 </c:if>

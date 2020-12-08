@@ -39,9 +39,7 @@
                             <a href="controller?command=delete_User&del_user=${user.username}"> ${user.username}</a>
                             </td>
                             <td>
-
                                 <a href="controller?command=edit_Advert&user_id=${user.id}"> <fmt:message key="edit_users_adverts"/></a>
-
                             </td>
                             <td>${user.rating}</td>
                             <td>

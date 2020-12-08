@@ -1,6 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="resources.messages"/>
 <html>
 <head>
 
@@ -13,6 +15,9 @@
 <body class="text-center">
 <jsp:include  page="header.jsp" />
 <body>
+<br>
+<br>
+<br>
 <form action="controller" method="get">
 <c:choose>
     <c:when test="${not empty advertList}">
@@ -42,6 +47,8 @@
         addList= ${advertList}
     </c:otherwise>
 </c:choose>
+    <br/>
+    ${changeMessage}
 <td>
     <input type="hidden" name="command" value="Save_Edited_Adverts">
     <input type="submit" value="Save changes">

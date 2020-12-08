@@ -6,39 +6,39 @@ import java.util.concurrent.TimeUnit;
 import static by.vasiliuk.project.controller.validator.ValidationProvider.*;
 
 public class Validator {
-    private static final int MAX_USERNAME_SIZE=30;
-    private static final int MIN_USERNAME_SIZE=8;
-    private static final int MAX_EMAIL_SIZE=40;
-    private static final int MIN_EMAIL_SIZE=10;
-    private static final int MAX_PASSWORD_SIZE=40;
-    private static final int MIN_PASSWORD_SIZE=8;
+    private static final int MAX_USERNAME_SIZE = 30;
+    private static final int MIN_USERNAME_SIZE = 8;
+    private static final int MAX_EMAIL_SIZE = 40;
+    private static final int MIN_EMAIL_SIZE = 10;
+    private static final int MAX_PASSWORD_SIZE = 40;
+    private static final int MIN_PASSWORD_SIZE = 8;
     private static final long ONE_HOUR = TimeUnit.HOURS.toMillis(1);
-    private static final long ONE_YEAR= TimeUnit.DAYS.toMillis(365);
+    private static final long ONE_YEAR = TimeUnit.DAYS.toMillis(365);
 
     public static boolean isValidName(String username){
         return username.matches(VALID_USERNAME_REGEXP) && username.length() <= MAX_USERNAME_SIZE
-                && username.length()>=MIN_USERNAME_SIZE;
+                && username.length() >= MIN_USERNAME_SIZE;
     }
 
     public static boolean isValidEmail(String email){ //fixme
-        return email.length()<=MAX_EMAIL_SIZE
-                && email.length()>=MIN_EMAIL_SIZE && email.matches(VALID_EMAIL_REGEXP);
+        return email.length() <= MAX_EMAIL_SIZE
+                && email.length() >= MIN_EMAIL_SIZE && email.matches(VALID_EMAIL_REGEXP);
     }
 
     private boolean isValidPassword(String username){
-        return username.matches(VALID_PASSWORD_REGEXP)&&username.length()<=MAX_PASSWORD_SIZE
-                &&username.length()>=MIN_PASSWORD_SIZE;
+        return username.matches(VALID_PASSWORD_REGEXP)&&username.length() <= MAX_PASSWORD_SIZE
+                &&username.length() >= MIN_PASSWORD_SIZE;
     }
 
     public boolean isValidTime(Date startDate, Date endDate) {
-        Date currentDate=new Date();
+        Date currentDate = new Date();
 
-        if(currentDate.getTime()-startDate.getTime()>ONE_HOUR){
+        if(currentDate.getTime() - startDate.getTime() > ONE_HOUR){
             return false;
         }
         if(startDate.after(endDate)){ return false;
         }
-        if(endDate.getTime()>startDate.getTime()+ONE_YEAR){
+        if(endDate.getTime() > startDate.getTime() + ONE_YEAR){
             return false;
         }
         return true;

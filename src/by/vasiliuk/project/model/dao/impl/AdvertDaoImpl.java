@@ -158,21 +158,25 @@ public class AdvertDaoImpl implements AdvertDao {
         return adverts;
     }
 
-    public String editAdvert(String advertTitle, String advertText) throws DaoException {
+    public int editAdvert(List<Advert> list) throws DaoException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
-        int save;
+        int numberUpdate = 0;
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()) {
             Connection connection = connectionWrapper.getConnection();
             String sql = SQL_ADVERTISEMENT_UPDATE;
             //refund status
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, editAdvert("?","?"));
-            save = preparedStatement.executeUpdate();
+            for (Advert advert: list) {
+                preparedStatement.setString(1, advert.getTitle());
+                preparedStatement.setString(2,advert.getText());
+                preparedStatement.setInt(3, advert.getId());
+                numberUpdate = preparedStatement.executeUpdate();
+            }
         } catch (SQLException e){
             throw new DaoException(e);
         }
 
-        return null;//fixme
+        return numberUpdate;//fixme
     }
 
     @Override

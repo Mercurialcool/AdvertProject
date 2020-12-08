@@ -5,11 +5,15 @@ import by.vasiliuk.project.controller.command.CommandException;
 import by.vasiliuk.project.controller.command.JspPath;
 import by.vasiliuk.project.controller.command.NameProvider;
 import by.vasiliuk.project.model.entity.Advert;
+import by.vasiliuk.project.service.ServiceException;
+import by.vasiliuk.project.service.impl.AdvertServiceImpl;
+import by.vasiliuk.project.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static by.vasiliuk.project.controller.command.NameProvider.ADVERT_TEXT;
 import static by.vasiliuk.project.controller.command.NameProvider.ADVERT_TITLE;
@@ -29,11 +33,25 @@ public class SaveEditedAdvertsCommand implements Command {
             Advert temp = original.get(i);
           if(!text[i].equals(temp.getText()) ||
             !title[i].equals(temp.getTitle())){
+              temp.setText(text[i]);
+              temp.setTitle(title[i]);
               changeList.add(temp);
           }
         }
-        //todo call previous service, and changeMsg
+        AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
+        try {
+         int result = advertServiceImpl.updateAdvertsByUser(changeList);
+         if (result > 0) {
+             request.setAttribute("advertList", changeList);
+             request.setAttribute("changeMessage", "измененио  объявлений : " + result);
+         } else {
+             request.setAttribute("advertList", original);
+             request.setAttribute("changeMessage", "изменений не произведено ");
+         }
+        } catch (ServiceException e) {
+            throw new CommandException(e);
+        }
 
-        return JspPath.ADMIN_PAGE;
+        return JspPath.EDIT_ADVERT;
     }
 }

@@ -20,7 +20,7 @@ public class AdvertServiceImpl implements AdvertService {
     public static AdvertServiceImpl getInstance() {
         return INSTANCE;
     }
-
+    private AdvertServiceImpl(){}
     public List<Advert> findAllAds() throws ServiceException {
         AdvertDao advertDao;
         try {
@@ -43,6 +43,16 @@ public class AdvertServiceImpl implements AdvertService {
             throw new ServiceException(e);
         }
         return advert;
+    }
+
+    public int updateAdvertsByUser(List<Advert> changeList)  throws ServiceException{
+        AdvertDao advertDao;
+        try {
+            advertDao = AdvertDaoImpl.getInstance();
+            return advertDao.editAdvert(changeList);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override

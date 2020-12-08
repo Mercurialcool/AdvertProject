@@ -7,6 +7,7 @@
 
 <html>
 <head>
+    <%@ include file="head_styles_scripts.jsp" %>
     <head>
 
         <link href="css/sign-in.css" rel="stylesheet" type="text/css"/>
@@ -19,7 +20,9 @@
 <body>
 <jsp:include  page="header.jsp" />
 </body>
-
+<br>
+<br>
+<br>
 ${section_selected}
 <c:forEach var="ad" items="${section_adverts}">
     <c:set var="classSuccess" value=""/>
