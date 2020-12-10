@@ -15,6 +15,9 @@ public class NameProvider {
     public static final String ORIGINAL_ADVERT_LIST = "originalAdvertList";
     public static final String DELETE_USER = "del_user";
     public static final String USER_ID = "user_id";
+    public static final String USER_ID_U = "USER_ID";
+    public static final String NO_NAME = "noname";
+    public static final String USER_TO = "user_to";
     public static final String USER_NAME= "userName";
     public static final String USER = "user";
     public static final String UPDATE_USER= "update_user";
@@ -36,6 +39,15 @@ public class NameProvider {
     public static final String ALL_JSP = "*.jsp";
     public static final String CURRENT_REFERER = "current_referer";
     public static final String COMMAND = "command";
-
-
+    public static final String INCORRECT = "incorrect";
+    public static final String INCORRECT_FORMAT_INPUT = "incorrect format input";
+    public static final String INCORRECT_NICK = "incorrectNick";
+    public static final String INCORRECT_NICK_FORMAT = "incorrect format nickname ";
+    public static final String INCORRECT_PASS = "incorrectPass";
+    public static final String INCORRECT_PASS_FORMAT = "incorrect format Password ";
+    public static final String INCORRECT_MAIL = "incorrectMail";
+    public static final String INCORRECT_MAIL_FORMAT = "incorrect format e-mail ";
+    public static final String CHANGE_MESSAGE = "changeMessage";
+    public static final String CHANGES_DONE = "измененио  объявлений : ";
+    public static final String NO_CHANGES = "изменений не произведено ";
 }

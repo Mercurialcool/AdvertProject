@@ -82,13 +82,10 @@ public class UserDaoImpl implements UserDao {
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()){
 
             String sql = SQL_FIND_ALL_USERS;
-            //sql constant in dao
             PreparedStatement preparedStatement = connectionWrapper.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            System.out.println("---------0---------");
             while (resultSet.next()){
-                System.out.println("-------1--------");
                 User user = new User();
                 user.setId(resultSet.getInt(USER_ID));
                 user.setUsername(resultSet.getString(USER_NAME));
@@ -96,12 +93,10 @@ public class UserDaoImpl implements UserDao {
                 user.setRole(resultSet.getInt(USER_ROLE));
                 user.setStatus(resultSet.getInt(USER_STATUS));
                 users.add(user);
-                //column label name in model
             }
         } catch (SQLException e){
             e.printStackTrace();
         }
-        System.out.println("list----------"+users);//fixme
         return users;
     }
 
@@ -111,14 +106,6 @@ public class UserDaoImpl implements UserDao {
         int update;
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()) {
             Connection connection = connectionWrapper.getConnection();
-//            String sqlFindMail = SQL_FIND_EMAIL_BY_USER;
-//            PreparedStatement statementForMail = connection.prepareStatement(sqlFindMail);
-//            statementForMail.setString(1, nickName);
-//            ResultSet resultSet = statementForMail.executeQuery();
-//            String oldEmail = resultSet.getString(1);
-//            if(email.equals(oldEmail)) {
-//
-//            }
             String sqlUpdate = SQL_USER_UPDATE;
             PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
             preparedStatement.setString(1, nickName);
@@ -138,7 +125,6 @@ public class UserDaoImpl implements UserDao {
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()) {
             Connection connection = connectionWrapper.getConnection();
             String sql = SQL_USER_ARCHIVE;
-            //refund status
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, deleteUserName);
             save = preparedStatement.executeUpdate();
@@ -164,7 +150,7 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e){
             throw new DaoException(e);
         }
-        return save==1;
+        return save == 1;
     }
 
     @Override

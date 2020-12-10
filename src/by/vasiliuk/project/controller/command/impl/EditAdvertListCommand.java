@@ -20,7 +20,7 @@ public class EditAdvertListCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         String userId = request.getParameter(USER_ID);
-        String userName = request.getParameter(USER_NAME);//fixme
+        String userName = request.getParameter(USER_NAME);
         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
         List<Advert> adverts;
         try {
@@ -28,7 +28,7 @@ public class EditAdvertListCommand implements Command {
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-        request.setAttribute(NameProvider.ADVERT_LIST, adverts);
+        request.getSession().setAttribute(NameProvider.ADVERT_LIST, adverts);
         request.getSession().setAttribute(NameProvider.ORIGINAL_ADVERT_LIST, adverts);
         return JspPath.EDIT_ADVERT;
     }

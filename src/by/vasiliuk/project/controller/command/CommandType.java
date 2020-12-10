@@ -20,7 +20,6 @@ public enum CommandType {
     TO_CREATE_ADVERTISEMENT(new ToCreateAdvertisementCommand()),
     TO_REGISTER(new ToRegisterCommand()),
     TO_PROFILE(new ToProfileCommand()),
-    TO_EDIT_USER(new ToEditUserCommand()),
     SECTIONS(new SectionsCommand()),
     SECTION_LIST(new SectionListCommand()),
     GET_USER(new GetUserCommand()),

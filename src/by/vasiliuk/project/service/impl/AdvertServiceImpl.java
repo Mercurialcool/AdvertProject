@@ -88,7 +88,7 @@ public class AdvertServiceImpl implements AdvertService {
             throw new ServiceException(e);
         }
     }
-//add=save
+
     public void saveAdvert(String title, String text, long id, String section) throws ServiceException{
         AdvertDao advertDao;
         try {

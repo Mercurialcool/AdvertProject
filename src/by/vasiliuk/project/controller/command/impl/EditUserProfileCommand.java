@@ -33,7 +33,6 @@ public class EditUserProfileCommand implements Command {
         if (update){
             user.setUsername(nickname);
             request.getSession(true).setAttribute(USER, user);
-          //  request.setAttribute("update_user", true);
         }
         return JspPath.PROFILE_PAGE;
     }

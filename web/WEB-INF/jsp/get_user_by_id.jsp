@@ -1,8 +1,12 @@
-
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="resources.messages"/>
+<%@ include file="head_styles_scripts.jsp" %>
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="title"/></title>
 </head>
 <body>
 <form class="form-signin" action="controller" method="get">

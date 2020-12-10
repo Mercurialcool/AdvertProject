@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
@@ -66,32 +67,24 @@
     </ul>
     <div class="header_language">
         <div class="menu">
-            <a class="menu_title" href="#"><fmt:message key="bar.language"/></a>
+            <a class="menu_title" href="#"><fmt:message key="choose_language"/></a>
             <div class="menu_down">
                 <div class="menu_section">
                     <form class="mb-0 ml-5" method="get" action="controller">
                         <li class="nav-item">
                             <input type="hidden" name="command" value="LANGUAGE" />
                             <input type="hidden" name="language" value="ru" />
-                            <input type="submit" value="<fmt:message key="bar.language"/>">
+                            <input type="submit" value="<fmt:message key="bar.language.ru"/>">
                         </li>
                     </form>
-                    <!--        <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=ru">
-                            <img src="${pageContext.request.contextPath}/img/ru.svg" alt="">
-                    </a></div>
-                    -->
                     <div class="menu_section">
                         <form class="mb-0 ml-5" method="get" action="controller">
                             <li class="nav-item">
                                 <input type="hidden" name="command" value="LANGUAGE" />
                                 <input type="hidden" name="language" value="en" />
-                                <input type="submit" value="<fmt:message key="bar.language"/>">
+                                <input type="submit" value="<fmt:message key="bar.language.en"/>">
                             </li>
                         </form>
-                        <!--
-                    <a href="${pageContext.request.contextPath}/controller?command=LANGUAGE&language=eng">
-                        <img src="${pageContext.request.contextPath}/img/eng.svg" alt="">
-                    </a> -->
                     </div>
 
                 </div>

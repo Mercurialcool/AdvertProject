@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="resources.messages"/>
+<%@ include file="head_styles_scripts.jsp" %>
 <html>
 <head>
     <%@ include file="head_styles_scripts.jsp" %>
@@ -72,7 +75,7 @@
 
                 <h3> Comments</h3>
 
-                <!-- Comment test -->
+
 
                 <c:forEach var="comment" items="${comments}">
                     <div class="media">

@@ -104,13 +104,4 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
-//    public List<User> findAllUsers() throws ServiceException {
-//        UserDao userDao;
-//        userDao = UserDaoImpl.getInstance();
-//        try {
-//            return userDao.findAll();
-//        } catch (DaoException e) {
-//            throw new ServiceException(e);
-//        }
-//    }
 }

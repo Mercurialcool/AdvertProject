@@ -8,15 +8,15 @@
 <%@ include file="head_styles_scripts.jsp" %>
 <html>
 <head>
-    <title>New Advertisement</title>
+    <title><fmt:message key="new_advert"/></title>
 </head>
 <body>
 <div class="h-100 d-flex flex-column justify-content-center align-items-center">
     <div class="w-25 mb-5">
 <form class="d-flex flex-column justify-content-center align-items-center" action="controller" method="get">
-    <h3 class="h3 mb-3">Add advertisement</h3>
+    <h3 class="h3 mb-3"><fmt:message key="add_advert"/></h3>
     <select name="section_selected" class="mb-3">
-        <option disabled>Выберите категорию</option>
+        <option disabled><fmt:message key="choose_category"/></option>
         <c:forEach items="${sessionScope.sections}" var="sec_elem">
             <option value=${sec_elem.id} >${sec_elem}</option>
         </c:forEach>

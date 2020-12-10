@@ -16,7 +16,6 @@ import static by.vasiliuk.project.util.HashUtilProvider.PAGE_SEPARATOR;
 public class HashUtil {
 
     private static final int ITERATIONS = 100;
-    private static final int SALT_LEN = 32;
     private static final int DESIRED_KEY_LEN = 50;
 
 
@@ -50,7 +49,7 @@ public class HashUtil {
             SecretKey key = keyFactory.generateSecret(new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, DESIRED_KEY_LEN));
             hashString =  Base64.getEncoder().encodeToString(key.getEncoded());
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            e.printStackTrace();// todo insert log
+            e.printStackTrace();
         }
         return hashString;
     }

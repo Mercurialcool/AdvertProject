@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setLocale value="ru"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="resources.messages"/>
+<%@ include file="head_styles_scripts.jsp" %>
 <html>
 <head>
     <%@ include file="head_styles_scripts.jsp" %>
@@ -26,9 +27,9 @@
                 <table  class="table table-striped">
                     <thead>
                     <tr>
-                        <td>Id</td>
-                        <td>Title</td>
-                        <td>Text</td>
+                        <td><fmt:message key="id"/></td>
+                        <td><fmt:message key="title"/></td>
+                        <td><fmt:message key="text"/></td>
 
                     </tr>
                     </thead>

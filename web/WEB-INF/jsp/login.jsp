@@ -1,8 +1,9 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="resources.messages"/>
+<%@ include file="head_styles_scripts.jsp" %>
 <html>
 <head>
 
@@ -24,6 +25,8 @@
     <input type="password" name="password" id="inputPassword" class="form-control mb-1" placeholder=<fmt:message key="password"/> required>
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="login"><fmt:message key="signIn"/></button>
 </form>
+        <br/>
+        ${incorrect}
     </div>
 </div>
 </body>

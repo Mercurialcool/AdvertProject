@@ -16,13 +16,12 @@ import static by.vasiliuk.project.controller.command.NameProvider.ADVERTS_BY_SEC
 
 public class GetAdvertsBySectionIdCommand implements Command {
 
-   private  long id;
+    private  long id;
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         List<Advert> advertTos = new ArrayList<>();
         AdvertServiceImpl advertServiceImpl = AdvertServiceImpl.getInstance();
-        //long id = ADVERTS_BY_SECTION;//todo
         List<Advert> adverts ;
         try {
             adverts = advertServiceImpl.findBySectionId(id);

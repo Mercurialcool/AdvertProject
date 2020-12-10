@@ -32,7 +32,6 @@ public class AdvertDaoImpl implements AdvertDao {
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()){
 
             String sql = SQL_FIND_ALL_ADDS;
-            //sql constant in dao
             preparedStatement = connectionWrapper.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -40,7 +39,6 @@ public class AdvertDaoImpl implements AdvertDao {
                 adverts.add(new Advert(resultSet.getInt(ADVERT_ID),
                         resultSet.getString(ADVERT_TITLE),
                         resultSet.getString(ADVERT_TEXT)));
-                //column label name in model
             }
 
         } catch (SQLException e){
@@ -70,7 +68,7 @@ public class AdvertDaoImpl implements AdvertDao {
                 int sectionId = resultSet.getInt(SECTIONS_SECTION_ID);
                 String sectionName = Section.getName(sectionId);
                 advert.setSection(sectionName);
-                int userId = resultSet.getInt(USERS_USER_ID);//fixme get name but id
+                int userId = resultSet.getInt(USERS_USER_ID);
                 advert.setUserName(String.valueOf(userId));
                 return Optional.of(advert);
             } else {
@@ -80,7 +78,7 @@ public class AdvertDaoImpl implements AdvertDao {
             throw new DaoException(e);
         }
     }
-//save=add
+
     @Override
     public void save(String advertTitle, String advertText, long id, String section) throws DaoException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -152,8 +150,6 @@ public class AdvertDaoImpl implements AdvertDao {
             }
         } catch (SQLException e){
             throw new DaoException(e);
-        } finally {
-            ///
         }
         return adverts;
     }
@@ -164,7 +160,6 @@ public class AdvertDaoImpl implements AdvertDao {
         try(ConnectionWrapper connectionWrapper = connectionPool.getConnection()) {
             Connection connection = connectionWrapper.getConnection();
             String sql = SQL_ADVERTISEMENT_UPDATE;
-            //refund status
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             for (Advert advert: list) {
                 preparedStatement.setString(1, advert.getTitle());
@@ -176,7 +171,7 @@ public class AdvertDaoImpl implements AdvertDao {
             throw new DaoException(e);
         }
 
-        return numberUpdate;//fixme
+        return numberUpdate;
     }
 
     @Override
@@ -197,8 +192,6 @@ public class AdvertDaoImpl implements AdvertDao {
             }
         } catch (SQLException e){
             throw new DaoException(e);
-        } finally {
-            ///fixme
         }
         return adverts;
     }

@@ -4,6 +4,7 @@ package by.vasiliuk.project.controller.command.impl;
 import by.vasiliuk.project.controller.command.Command;
 import by.vasiliuk.project.controller.command.CommandException;
 import by.vasiliuk.project.controller.command.NameProvider;
+import by.vasiliuk.project.controller.validator.Validator;
 import by.vasiliuk.project.model.entity.Advert;
 import by.vasiliuk.project.model.entity.Section;
 import by.vasiliuk.project.model.entity.User;
@@ -31,12 +32,14 @@ public class LoginCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
-//todo create localization at jsp
 
          String page;
          String username = request.getParameter(NAME);
          String pass = request.getParameter(PASSWORD);
-
+        if(!Validator.isValidName(username) || !Validator.isValidPassword(pass)) {
+            request.setAttribute(INCORRECT, INCORRECT_FORMAT_INPUT);
+            return page = JspPath.LOGIN_PAGE;
+        }
         UserServiceImpl userServiceImpl = UserServiceImpl.getInstance();
         try {
             User user = userServiceImpl.logInUser(username);
@@ -73,9 +76,8 @@ public class LoginCommand implements Command {
             }
         } catch (ServiceException e) {
             logger.error("error in LoginService", e);
-           page = JspPath.LOGIN_PAGE; /// other page?
+           page = JspPath.LOGIN_PAGE;
         }
         return page;
     }
-//todo make same log-ways and constants
 }

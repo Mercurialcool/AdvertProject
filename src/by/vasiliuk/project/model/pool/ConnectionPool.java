@@ -19,16 +19,20 @@ public class ConnectionPool implements Pool<ConnectionWrapper>{
     static Logger logger = LogManager.getLogger();
     private static ConnectionPool pool;
     private final int CONNECTION_POOL_SIZE;
+    public static final String POOL_DESTROYED = "Connection pool has been destroyed";
+    public static final String DRIVERS_DEREGISTERED = "Drivers have been deregistered";
+    public static final String POOL_CREATED = "Connection pool created";
+    public static final String CONNECTION_POLL_DOESNT_CREATED = "Connection pool not created";
     private static ReentrantLock lock = new ReentrantLock();
     private static AtomicBoolean created = new AtomicBoolean(false);
     private ArrayBlockingQueue<ConnectionWrapper> availableConnections;
     private ArrayBlockingQueue<ConnectionWrapper> usedConnections;
-// double check singleton --- lock, atomic  todo
     private ConnectionPool(){
         Properties properties = PoolConfigurator.getConfigurator().getProperties();
                 String url = properties.getProperty(DB_HOST);
                 String user = properties.getProperty(DB_LOGIN);
                 String pass = properties.getProperty(DB_PASSWORD);
+
                 CONNECTION_POOL_SIZE = Integer.parseInt(properties.getProperty("connection-pool-size"));
             availableConnections = new ArrayBlockingQueue<>(CONNECTION_POOL_SIZE);
             usedConnections = new ArrayBlockingQueue<>(CONNECTION_POOL_SIZE);
@@ -41,7 +45,7 @@ public class ConnectionPool implements Pool<ConnectionWrapper>{
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                 NoSuchMethodException | ClassNotFoundException | SQLException e) {
                 logger.log(Level.FATAL, e);
-            throw new RuntimeException("Connection pool not created", e);
+            throw new RuntimeException(CONNECTION_POLL_DOESNT_CREATED, e);
         }
     }
 
@@ -51,7 +55,7 @@ public class ConnectionPool implements Pool<ConnectionWrapper>{
                     lock.lock();
                     if (pool == null) {
                         pool = new ConnectionPool();
-                        logger.log(Level.INFO, "Pool created successful");
+                        logger.log(Level.INFO,POOL_CREATED);
                         created.set(true);
                     }
                 } finally{
@@ -68,7 +72,6 @@ public class ConnectionPool implements Pool<ConnectionWrapper>{
             usedConnections.add(connection);
         } catch (InterruptedException e) {
             logger.log(Level.ERROR, e);
-            //todo log or throw custom exception
         }
         return connection;
     }
@@ -76,10 +79,9 @@ public class ConnectionPool implements Pool<ConnectionWrapper>{
     public boolean releaseConnection(ConnectionWrapper connection){
         usedConnections.remove(connection);
         try {
-            availableConnections.put(connection);//todo при попытке удаления проверить наличие объекта в userconnection (проверить есть ли он и нсли да. УДАЛИТЬ, нет - exception)
+            availableConnections.put(connection);
         } catch (InterruptedException e) {
             logger.log(Level.ERROR, e);
-            //throw custom exception
         }
         return true;
     }
@@ -90,7 +92,7 @@ public class ConnectionPool implements Pool<ConnectionWrapper>{
                 ConnectionWrapper proxyConnection = availableConnections.take();
                 proxyConnection.reallyClose();
             }
-            logger.log(Level.INFO, "Connection pool has been destroyed");
+            logger.log(Level.INFO, POOL_DESTROYED);
         } catch (InterruptedException | SQLException e) {
             logger.log(Level.ERROR, e);
         } finally {
@@ -104,7 +106,7 @@ public class ConnectionPool implements Pool<ConnectionWrapper>{
                 Driver driver = DriverManager.getDrivers().nextElement();
                 DriverManager.deregisterDriver(driver);
             }
-            logger.log(Level.INFO, "Drivers have been deregistered");
+            logger.log(Level.INFO, DRIVERS_DEREGISTERED);
         } catch (SQLException e) {
             logger.log(Level.ERROR, e);
         }

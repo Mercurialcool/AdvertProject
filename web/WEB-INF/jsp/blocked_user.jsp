@@ -4,6 +4,6 @@
     <title>Blocked user</title>
 </head>
 <body>
-BANHAMMER HIT YOU :D
+---BANHAMMER HIT YOU :D---
 </body>
 </html>

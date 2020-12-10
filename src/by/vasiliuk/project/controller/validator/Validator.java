@@ -16,18 +16,18 @@ public class Validator {
     private static final long ONE_YEAR = TimeUnit.DAYS.toMillis(365);
 
     public static boolean isValidName(String username){
-        return username.matches(VALID_USERNAME_REGEXP) && username.length() <= MAX_USERNAME_SIZE
-                && username.length() >= MIN_USERNAME_SIZE;
+        return username.matches(VALID_USERNAME_REGEXP) && (username.length() <= MAX_USERNAME_SIZE
+                && username.length() >= MIN_USERNAME_SIZE);
     }
 
-    public static boolean isValidEmail(String email){ //fixme
+    public static boolean isValidEmail(String email){
         return email.length() <= MAX_EMAIL_SIZE
-                && email.length() >= MIN_EMAIL_SIZE && email.matches(VALID_EMAIL_REGEXP);
+                && (email.length() >= MIN_EMAIL_SIZE && email.matches(VALID_EMAIL_REGEXP));
     }
 
-    private boolean isValidPassword(String username){
-        return username.matches(VALID_PASSWORD_REGEXP)&&username.length() <= MAX_PASSWORD_SIZE
-                &&username.length() >= MIN_PASSWORD_SIZE;
+    public static boolean isValidPassword(String password){
+        return password.matches(VALID_PASSWORD_REGEXP)&& (password.length() <= MAX_PASSWORD_SIZE
+                &&password.length() >= MIN_PASSWORD_SIZE);
     }
 
     public boolean isValidTime(Date startDate, Date endDate) {

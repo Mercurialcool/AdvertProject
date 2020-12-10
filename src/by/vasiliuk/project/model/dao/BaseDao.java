@@ -4,10 +4,12 @@ package by.vasiliuk.project.model.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import static by.vasiliuk.project.model.dao.DaoProvider.RESULT_SET_NOT_CLOSED;
+import static by.vasiliuk.project.model.dao.DaoProvider.STATEMENT_DOESNT_CLOSED;
 
 public interface BaseDao {
     Logger logger = LogManager.getLogger();
@@ -16,7 +18,7 @@ public interface BaseDao {
             try {
                 set.close();
             } catch (SQLException e) {
-                logger.error("result set is not closed", e);//todo const?
+                logger.error(RESULT_SET_NOT_CLOSED, e);
             }
         }
     }
@@ -25,7 +27,7 @@ public interface BaseDao {
             try{
                 statement.close();
             } catch (SQLException e) {
-                logger.error("Statement is not closed", e);
+                logger.error(STATEMENT_DOESNT_CLOSED, e);
             }
         }
     }
