@@ -14,7 +14,11 @@
 <div class="container">
     <input type="hidden" name="command" value="Edit_User"/>
     <input type="submit" name="submit" value="<fmt:message key="edit_user"/>" />
-
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
  <form action="ad" method="post" id="advertForm" role="form">
     <c:choose>
         <c:when test="${not empty users_list}">
